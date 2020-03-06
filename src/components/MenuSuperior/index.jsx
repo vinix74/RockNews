@@ -1,30 +1,82 @@
-import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap';
+import React from 'react';
+import { Navbar, Nav, Form, Button } from 'react-bootstrap';
+import MenuItems from './MenuItems';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { Redirect, withRouter } from 'react-router-dom';
 
-import Logo from '../../assets/logo.jpg';
+import './styles.scss';
 
-const MenuSuperior = () => (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
-            <img src={Logo} alt="logo" />
+import Logo from '../../assets/rocklogo.png';
 
-            Rock News
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
-            </Nav>
-            <Nav>
-                <Nav.Link href="#deets">More deets</Nav.Link>
-                <Nav.Link eventKey={2} href="#memes">
-                    Dank memes
-      </Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
-)
+class MenuSuperior extends React.Component {
+    constructor(props) {
+        super(props);
 
-export default MenuSuperior;
+        this.state = {
+
+            termo: '',
+        }
+    }
+
+    _handleChangeBuscaNoticia = ({ target: { value } }) => this.setState({ termo: value });
+
+    _handleSubmitBuscaNoticia = (evento) => {
+        evento.preventDefault();
+        const { termo } = this.state;
+
+        if (!termo) {
+            NotificationManager.info('Insira um termo para buscar a notícia!');
+            return;
+        }
+
+        this.props.history.push(`/noticias?${this.state.termo}`);
+    }
+
+
+    render() {
+
+
+
+        return (
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+
+                <Navbar.Brand href="/noticias?geral" className="logo" >
+
+                    <img height={40} src={Logo} alt="logo" />
+                    <span>Rock News</span>
+
+                </Navbar.Brand>
+
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+                <Navbar.Collapse id="responsive-navbar-nav">
+
+                    <Nav className="mt-3 d-flex menu" >
+
+                        <MenuItems />
+
+                        <form className={`d-flex ${window.innerWidth < 992 && "mt-3"}`} onSubmit={e => this._handleSubmitBuscaNoticia(e)}>
+                            <Form.Control
+                                type="text"
+                                placeholder="Buscar notícia"
+                                style={{ width: "200px" }}
+                                onChange={e => this._handleChangeBuscaNoticia(e)}
+                            />
+                            <Button type="submit" className="ml-2" variant="dark" >Buscar</Button>
+                        </form>
+
+                    </Nav>
+
+                </Navbar.Collapse>
+
+                <NotificationContainer />
+
+            </Navbar>
+        )
+    }
+
+}
+
+
+export default withRouter(MenuSuperior);
 
