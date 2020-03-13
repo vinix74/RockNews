@@ -2,17 +2,17 @@ const data = [
     {
         name: "geral",
         titulo: 'Geral',
-        to: '/noticias?geral'
+        to: '/geral'
     },
     {
         name: "tecnologia",
         titulo: 'Tecnologia',
-        to: '/noticias?tecnologia'
+        to: '/tecnologia'
     },
     {
         name: "ciencias",
         titulo: 'Ciências',
-        to: '/noticias?ciencias'
+        to: '/ciencias'
     },
 ];
 

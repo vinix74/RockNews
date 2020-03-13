@@ -15,6 +15,14 @@ class Ciencias extends React.Component {
 
     }
 
+    componentDidMount() {
+        api.get(`/top-headlines?country=br&category=science&apiKey=${API_KEY}`)
+            .then(res => {
+                if (res.status === 200)
+                    this.setState({ listaNoticias: res.data.articles });
+            });
+    }
+
     render() {
         return (
             <div>

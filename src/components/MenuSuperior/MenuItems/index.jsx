@@ -1,5 +1,4 @@
 import React from 'react';
-import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import data from './data';
 
@@ -7,7 +6,7 @@ const MenuItems = () => {
     return (
         <>
             {data.map(x => (
-                <Nav.Link
+                <NavLink
                     key={x.name}
                     name={x.name}
                     className="link"
@@ -16,7 +15,7 @@ const MenuItems = () => {
                     activeClassName="active"
                 >
                     {x.titulo}
-                </Nav.Link>
+                </NavLink>
             ))}
         </>
     )

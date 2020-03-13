@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Button, Badge } from 'react-bootstrap';
 
-import './styles.scss';
+import './styles.css';
 
 export default class CardNoticia extends Component {
     constructor(props) {
@@ -9,14 +9,8 @@ export default class CardNoticia extends Component {
 
     }
 
-
-    componentDidMount() {
-        console.log(this.props.noticia)
-    }
-
-
     render() {
-
+        console.log(this.props);
         const { noticia } = this.props;
 
         return (
@@ -38,7 +32,7 @@ export default class CardNoticia extends Component {
                         </a>
                     </Button>
 
-                    <div className="mt-5 flex justify-content-between" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div className="mt-5 d-flex justify-content-between">
                         <Badge variant="dark">{`${new Date(noticia.publishedAt).toLocaleDateString()} - ${new Date(noticia.publishedAt).toLocaleTimeString()}`}</Badge>
                         <Badge variant="dark">{noticia.source.name}</Badge>
                     </div>

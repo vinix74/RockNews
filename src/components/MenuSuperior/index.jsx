@@ -2,9 +2,9 @@ import React from 'react';
 import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import MenuItems from './MenuItems';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-import './styles.scss';
+import './styles.css';
 
 import Logo from '../../assets/rocklogo.png';
 
@@ -20,7 +20,8 @@ class MenuSuperior extends React.Component {
 
     _handleChangeBuscaNoticia = ({ target: { value } }) => this.setState({ termo: value });
 
-    _handleSubmitBuscaNoticia = (evento) => {
+    _handleSubmitBuscaNoticia = evento => {
+
         evento.preventDefault();
         const { termo } = this.state;
 
@@ -29,7 +30,7 @@ class MenuSuperior extends React.Component {
             return;
         }
 
-        this.props.history.push(`/noticias?${this.state.termo}`);
+        this.props.history.push(`/busca/${termo}`);
     }
 
 
@@ -40,7 +41,7 @@ class MenuSuperior extends React.Component {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 
-                <Navbar.Brand href="/noticias?geral" className="logo" >
+                <Navbar.Brand href="/geral" className="logo" >
 
                     <img height={40} src={Logo} alt="logo" />
                     <span>Rock News</span>
@@ -55,15 +56,15 @@ class MenuSuperior extends React.Component {
 
                         <MenuItems />
 
-                        <form className={`d-flex ${window.innerWidth < 992 && "mt-3"}`} onSubmit={e => this._handleSubmitBuscaNoticia(e)}>
+                        <Form className={`d-flex ${window.innerWidth < 992 && "mt-3"}`} onSubmit={this._handleSubmitBuscaNoticia}>
                             <Form.Control
                                 type="text"
                                 placeholder="Buscar notícia"
                                 style={{ width: "200px" }}
-                                onChange={e => this._handleChangeBuscaNoticia(e)}
+                                onChange={this._handleChangeBuscaNoticia}
                             />
                             <Button type="submit" className="ml-2" variant="dark" >Buscar</Button>
-                        </form>
+                        </Form>
 
                     </Nav>
 

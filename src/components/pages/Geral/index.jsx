@@ -3,8 +3,6 @@ import { api, API_KEY } from '../../../api/config.js';
 
 import CardNoticia from '../../CardNoticia';
 
-import './styles.css';
-
 class Geral extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +23,9 @@ class Geral extends React.Component {
     }
 
     render() {
+
+        const { listaNoticias } = this.state;
+
         return (
             <div>
                 <h1 className="text-center m-3">Principais Notícias</h1>
@@ -32,8 +33,8 @@ class Geral extends React.Component {
                 <div className="containerNews">
 
                     {
-                        this.state.listaNoticias.length > 0 ?
-                            this.state.listaNoticias.map(noticia => <CardNoticia noticia={noticia} />)
+                        listaNoticias.length > 0 ?
+                            listaNoticias.map(noticia => <CardNoticia noticia={noticia} />)
                             :
                             <div className="m-5">
                                 <span>Carregando...</span>

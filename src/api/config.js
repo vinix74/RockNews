@@ -5,4 +5,3 @@ export const api = axios.create({
 });
 
 export const API_KEY = "f7c12929c3ce471e99e84f5a23457906";
-export const GERAL_BRASIL = "/top-headlines?country=br&apiKey=";
