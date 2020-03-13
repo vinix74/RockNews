@@ -22,6 +22,9 @@ class Tecnologia extends React.Component {
     }
 
     render() {
+
+        const { listaNoticias } = this.state;
+
         return (
             <div>
                 <h1 className="text-center m-3">Tecnologia</h1>
@@ -29,8 +32,8 @@ class Tecnologia extends React.Component {
                 <div className="containerNews" >
 
                     {
-                        this.state.listaNoticias.length > 0 ?
-                            this.state.listaNoticias.map(noticia => <CardNoticia noticia={noticia} />)
+                        listaNoticias.length > 0 ?
+                            listaNoticias.map(noticia => <CardNoticia noticia={noticia} />)
                             :
                             <div className="m-5">
                                 <span>Carregando...</span>

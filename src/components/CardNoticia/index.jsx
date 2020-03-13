@@ -10,7 +10,7 @@ export default class CardNoticia extends Component {
     }
 
     render() {
-        console.log(this.props);
+
         const { noticia } = this.props;
 
         return (
